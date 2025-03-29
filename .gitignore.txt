@@ -1,0 +1,11 @@
+Backend/TodoApplication/TodoApplication.API/bin
+Backend/TodoApplication/TodoApplication.Application/bin
+Backend/TodoApplication/TodoApplication.Core/bin
+Backend/TodoApplication/TodoApplication.Infrastructure/bin
+
+Backend/TodoApplication/TodoApplication.API/obj
+Backend/TodoApplication/TodoApplication.Application/obj
+Backend/TodoApplication/TodoApplication.Core/obj
+Backend/TodoApplication/TodoApplication.Infrastructure/obj
+
+Backend/TodoApplication/TodoApplication.Infrastructure/Migrations
