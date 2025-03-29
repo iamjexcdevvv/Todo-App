@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "k0GZOswjcRI=",
+  "success": true,
+  "projectFilePath": "D:\\REACT + ASP.NET\\TODO\\Backend\\TodoApplication\\TodoApplication.Application\\TodoApplication.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Andrei Catipay\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
+    "C:\\Users\\Andrei Catipay\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\Andrei Catipay\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
