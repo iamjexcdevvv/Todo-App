@@ -9,7 +9,7 @@ namespace TodoApplication.Core.Entities
     public class TodoEntity
     {
         public int Id { get; set; }
-        public string TodoName { get; set; } = string.Empty;
-        public bool IsCompleted { get; set; }
+        public string? TodoName { get; set; }
+        public bool? IsCompleted { get; set; }
     }
 }

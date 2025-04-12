@@ -11,6 +11,7 @@ namespace TodoApplication.Core.Repositories
     {
         Task<int> CreateTodo(TodoEntity todoObj);
         Task<List<TodoEntity>> GetTodos();
-        Task<bool> UpdateTodoStatusById(int? id, bool isCompleted);
+        Task<bool> UpdateTodoById(int? id, TodoEntity updatedObj);
+        Task<bool> DeleteTodoById(int? id);
     }
 }

@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApplication.Application.Features.CreateTodo;
+using TodoApplication.Application.Features.DeleteTodo;
 using TodoApplication.Application.Features.GetTodos;
-using TodoApplication.Application.Features.UpdateTodoStatusById;
+using TodoApplication.Application.Features.UpdateTodoById;
 using TodoApplication.Core.Entities;
 
 namespace TodoApplication.API.Controllers
@@ -42,7 +43,25 @@ namespace TodoApplication.API.Controllers
                 return BadRequest();
             }
 
-            bool result = await _mediator.Send(new UpdateTodoStatusByIdCommand(id, updatedObj.IsCompleted));
+            bool result = await _mediator.Send(new UpdateTodoByIdCommand(id, updatedObj));
+
+            if (!result)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTodoById(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
+            bool result = await _mediator.Send(new DeleteTodoCommand(id));
 
             if (!result)
             {

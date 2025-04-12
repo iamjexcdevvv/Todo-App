@@ -26,12 +26,27 @@ namespace TodoApplication.Infrastructure.Repositories
             return todoObj.Id;
         }
 
+        public async Task<bool> DeleteTodoById(int? id)
+        {
+            TodoEntity? obj = await _context.Todos.FindAsync(id);
+
+            if (obj == null)
+            {
+                return false;
+            }
+
+            _context.Todos.Remove(obj);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<List<TodoEntity>> GetTodos()
         {
             return await _context.Todos.ToListAsync();
         }
 
-        public async Task<bool> UpdateTodoStatusById(int? id, bool isCompleted)
+        public async Task<bool> UpdateTodoById(int? id, TodoEntity updatedObj)
         {
             var obj = await _context.Todos.FindAsync(id);
 
@@ -40,7 +55,16 @@ namespace TodoApplication.Infrastructure.Repositories
                 return false;
             }
 
-            obj.IsCompleted = isCompleted;
+            if (updatedObj.IsCompleted != null)
+            {
+                obj.IsCompleted = updatedObj.IsCompleted;
+            }
+
+            if (updatedObj.TodoName != null)
+            {
+                obj.TodoName = updatedObj.TodoName;
+            }
+
             await _context.SaveChangesAsync();
 
             return true;

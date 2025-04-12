@@ -7,5 +7,5 @@ using MediatR;
 
 namespace TodoApplication.Application.Features.CreateTodo
 {
-    public record CreateTodoCommand(string TodoName, bool IsCompleted) : IRequest<int>;
+    public record CreateTodoCommand(string? TodoName, bool? IsCompleted) : IRequest<int>;
 }
