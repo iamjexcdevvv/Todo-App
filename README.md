@@ -6,4 +6,5 @@ This project follows clean architecture and SOLID principle
 - ASP.NET Core
 - React with Typescript
 - Tailwind CSS
+- Microsoft SQL Server
 
