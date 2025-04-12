@@ -1,3 +1,9 @@
-# Todo App made with ASP.NET Core + React + Tailwind CSS
+# Todo App
 
-This project structured with clean architecture and following SOLID principle
+This project follows clean architecture and SOLID principle
+
+## Tech Stack
+- ASP.NET Core
+- React with Typescript
+- Tailwind CSS
+
