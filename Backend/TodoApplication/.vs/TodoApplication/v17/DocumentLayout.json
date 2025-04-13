@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "D:\\REACT \u002B ASP.NET\\TODO\\Backend\\TodoApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C1EC45A6-EBF6-4A4F-957E-871208F8E29E}|TodoApplication.Infrastructure\\TodoApplication.Infrastructure.csproj|d:\\react \u002B asp.net\\todo\\backend\\todoapplication\\todoapplication.infrastructure\\repositories\\todorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1EC45A6-EBF6-4A4F-957E-871208F8E29E}|TodoApplication.Infrastructure\\TodoApplication.Infrastructure.csproj|solutionrelative:todoapplication.infrastructure\\repositories\\todorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E71F4CDE-67E2-424A-80B5-0FE0272BB69F}|TodoApplication.API\\TodoApplication.API.csproj|d:\\react \u002B asp.net\\todo\\backend\\todoapplication\\todoapplication.api\\controllers\\todoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E71F4CDE-67E2-424A-80B5-0FE0272BB69F}|TodoApplication.API\\TodoApplication.API.csproj|solutionrelative:todoapplication.api\\controllers\\todoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -23,27 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TodoRepository.cs",
-              "DocumentMoniker": "D:\\REACT \u002B ASP.NET\\TODO\\Backend\\TodoApplication\\TodoApplication.Infrastructure\\Repositories\\TodoRepository.cs",
-              "RelativeDocumentMoniker": "TodoApplication.Infrastructure\\Repositories\\TodoRepository.cs",
-              "ToolTip": "D:\\REACT \u002B ASP.NET\\TODO\\Backend\\TodoApplication\\TodoApplication.Infrastructure\\Repositories\\TodoRepository.cs",
-              "RelativeToolTip": "TodoApplication.Infrastructure\\Repositories\\TodoRepository.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAwwDcAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T00:08:45.88Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "TodosController.cs",
               "DocumentMoniker": "D:\\REACT \u002B ASP.NET\\TODO\\Backend\\TodoApplication\\TodoApplication.API\\Controllers\\TodosController.cs",
               "RelativeDocumentMoniker": "TodoApplication.API\\Controllers\\TodosController.cs",
               "ToolTip": "D:\\REACT \u002B ASP.NET\\TODO\\Backend\\TodoApplication\\TodoApplication.API\\Controllers\\TodosController.cs",
               "RelativeToolTip": "TodoApplication.API\\Controllers\\TodosController.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAA4wB4AAAASAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAcwCoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T00:47:37.666Z",
+              "WhenOpened": "2025-04-13T01:33:41.194Z",
               "EditorCaption": ""
             }
           ]

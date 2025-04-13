@@ -1,23 +1,40 @@
 import React, { ChangeEvent, SyntheticEvent } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+
 import AddBtn from "./AddBtn";
+
+import { TaskFilter } from "../enums";
+import Todo from "../interfaces/ITodo";
+import {
+	addNewTodo,
+	updateTodoName,
+	updateTodoStatus,
+	deleteTodoById,
+} from "../services/todo";
 
 const URL = "https://localhost:7267/api/Todos";
 
-interface Todo {
-	id: number;
-	todoName: string;
-	isCompleted: boolean;
-}
-
-export default function Todo() {
+export default function Todos() {
 	const [todos, setTodos] = useState<Todo[]>([]);
+	const [filterTodos, setFilterTodos] = useState<TaskFilter>(TaskFilter.All);
 	const [todoItem, setTodoItem] = useState("");
 	const [selectedTodo, setSelectedTodo] = useState<Todo>({
 		id: 0,
 		todoName: "",
 		isCompleted: false,
 	});
+
+	const filteredTodos = useMemo(() => {
+		if (filterTodos === TaskFilter.Completed)
+			return todos.filter((t) => t.isCompleted);
+		if (filterTodos === TaskFilter.NotCompleted)
+			return todos.filter((t) => !t.isCompleted);
+		return todos;
+	}, [todos, filterTodos]);
+
+	function handleFilterClick(filterBy: TaskFilter) {
+		setFilterTodos(filterBy);
+	}
 
 	function handleSaveChangesClick() {
 		const updatedTodoEntry = selectedTodo;
@@ -52,6 +69,11 @@ export default function Todo() {
 
 	function handleInputAddTodoChange(event: ChangeEvent) {
 		const target = event.target as HTMLInputElement;
+
+		if (!target.value.trim()) {
+			console.log("task name should not be empty");
+		}
+
 		setTodoItem(target.value);
 	}
 
@@ -61,8 +83,24 @@ export default function Todo() {
 		deleteTodoById(todoId);
 	}
 
-	function handleAddClick() {
-		addNewTodo();
+	async function handleSubmit(event: SyntheticEvent) {
+		event.preventDefault();
+
+		const taskName = todoItem.trim();
+
+		if (!taskName) {
+			alert("Task name is required");
+			return;
+		}
+
+		try {
+			const newTodo: Todo = await addNewTodo(taskName);
+			setTodos([...todos, newTodo]);
+		} catch (error) {
+			console.log(error);
+		}
+
+		setTodoItem("");
 	}
 
 	function handleChange(index: number) {
@@ -72,63 +110,27 @@ export default function Todo() {
 		updateTodoStatus(newTodo[index]);
 	}
 
-	async function updateTodoName(newTodo: Todo) {
-		await fetch(`https://localhost:7267/api/Todos/${newTodo.id}`, {
-			method: "PATCH",
-			headers: {
-				"Content-Type": "application/json;charset=utf-8",
-			},
-			body: JSON.stringify(newTodo),
-		});
-	}
-
-	async function updateTodoStatus(newTodo: Todo) {
-		await fetch(`https://localhost:7267/api/Todos/${newTodo.id}`, {
-			method: "PATCH",
-			headers: {
-				"Content-Type": "application/json;charset=utf-8",
-			},
-			body: JSON.stringify(newTodo),
-		});
-	}
-
-	async function addNewTodo() {
-		const newTodo: Todo = { id: 0, todoName: todoItem, isCompleted: false };
-
-		const request = await fetch(`https://localhost:7267/api/Todos`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json;charset=utf-8",
-			},
-			body: JSON.stringify(newTodo),
-		});
-
-		const response = await request.json();
-
-		newTodo.id = response.id;
-
-		setTodos([...todos, newTodo]);
-		setTodoItem("");
-	}
-
-	async function deleteTodoById(id: number) {
-		await fetch(`https://localhost:7267/api/Todos/${id}`, {
-			method: "DELETE",
-		});
-	}
-
 	useEffect(() => {
 		async function FetchData() {
-			const response = await fetch(URL);
-			const data = await response.json();
+			try {
+				const response = await fetch(URL);
 
-			setTodos(data);
+				if (!response.ok) {
+					throw new Error(`HTTP error: ${response.status}`);
+				}
+
+				const data = await response.json();
+
+				setTodos(data);
+			} catch (error) {
+				console.log(error);
+			}
 		}
 
 		FetchData();
 	}, []);
 
-	const todoEntry = todos.map((item, index) => {
+	const todoEntry = filteredTodos.map((item, index) => {
 		return (
 			<tr key={item.id}>
 				<td>{index + 1}</td>
@@ -270,9 +272,10 @@ export default function Todo() {
 				</dialog>
 			</div>
 			<AddBtn
+				handleFilterClick={handleFilterClick}
 				handleInputChange={handleInputAddTodoChange}
 				todoInput={todoItem}
-				handleClick={handleAddClick}
+				handleSubmit={handleSubmit}
 			/>
 		</>
 	);

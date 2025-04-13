@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using System.ComponentModel.DataAnnotations;
+using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,9 +17,11 @@ namespace TodoApplication.API.Controllers
     public class TodosController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public TodosController(IMediator mediator)
+        private readonly IValidator<TodoEntity> _validator;
+        public TodosController(IMediator mediator, IValidator<TodoEntity> validator)
         {
             _mediator = mediator;
+            _validator = validator;
         }
 
         [HttpGet]
@@ -31,6 +35,13 @@ namespace TodoApplication.API.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateTodo([FromBody] TodoEntity todoObj)
         {
+            var result = await _validator.ValidateAsync(todoObj);
+
+            if (!result.IsValid)
+            {
+                return BadRequest();
+            }
+
             todoObj.Id = await _mediator.Send(new CreateTodoCommand(todoObj.TodoName, todoObj.IsCompleted));
             return CreatedAtAction(nameof(GetTodos), new { id = todoObj.Id }, todoObj);
         }
